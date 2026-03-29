@@ -31,21 +31,21 @@ export function AboutSection() {
         </Reveal>
 
         <Reveal delay={0.12} className="grid gap-5">
-          <article className="premium-card rounded-2xl p-6">
+          <article className="site-card site-card-hover p-6">
             <h3 className="mb-3 text-xl font-semibold text-white">Technical Depth</h3>
-            <p className="text-zinc-300">
+            <p className="muted-copy">
               I architect scalable websites with clean code, strong UX, and performance-first foundations.
             </p>
           </article>
-          <article className="premium-card rounded-2xl p-6">
+          <article className="site-card site-card-hover p-6">
             <h3 className="mb-3 text-xl font-semibold text-white">SEO Strategy</h3>
-            <p className="text-zinc-300">
+            <p className="muted-copy">
               From technical SEO to entity-driven content strategy, I align execution with ranking intent.
             </p>
           </article>
-          <article className="premium-card rounded-2xl p-6">
+          <article className="site-card site-card-hover p-6">
             <h3 className="mb-3 text-xl font-semibold text-white">Business Outcomes</h3>
-            <p className="text-zinc-300">
+            <p className="muted-copy">
               Every decision is tied to growth KPIs: visibility, qualified traffic, and conversion efficiency.
             </p>
           </article>

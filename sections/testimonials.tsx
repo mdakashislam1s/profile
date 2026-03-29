@@ -17,7 +17,7 @@ export function TestimonialsSection() {
       <div className="grid gap-6 md:grid-cols-3">
         {testimonials.map((item, index) => (
           <Reveal key={item.name} delay={index * 0.08}>
-            <article className="premium-card h-full rounded-2xl p-6">
+            <article className="site-card site-card-hover h-full p-6">
               <p className="mb-6 text-sm leading-relaxed text-zinc-300">
                 <span className="mr-1 text-2xl leading-none text-gold-300">“</span>
                 {item.quote}

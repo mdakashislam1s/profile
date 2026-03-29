@@ -22,7 +22,7 @@ export function FaqSection() {
           const isOpen = active === index;
 
           return (
-            <article key={item.question} className="rounded-2xl border border-white/10 bg-zinc-900/50">
+            <article key={item.question} className="site-card">
               <button
                 type="button"
                 onClick={() => setActive(isOpen ? null : index)}

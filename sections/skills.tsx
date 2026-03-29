@@ -17,13 +17,13 @@ export function SkillsSection() {
       <div className="grid gap-6 lg:grid-cols-2">
         {skillGroups.map((group, index) => (
           <Reveal key={group.category} delay={index * 0.08}>
-            <article className="glass-card rounded-2xl p-6">
+            <article className="site-card site-card-hover p-6">
               <h3 className="mb-5 text-xl font-semibold text-white">{group.category}</h3>
               <div className="space-y-4">
                 {group.skills.map((skill) => (
                   <div key={skill.name}>
                     <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="text-zinc-300">{skill.name}</span>
+                      <span className="text-zinc-200">{skill.name}</span>
                       <span className="font-semibold text-gold-300">{skill.value}%</span>
                     </div>
                     <div className="h-2 overflow-hidden rounded-full bg-zinc-800">

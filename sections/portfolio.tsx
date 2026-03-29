@@ -18,7 +18,7 @@ export function PortfolioSection() {
       <div className="grid gap-6 lg:grid-cols-3">
         {projects.map((project, index) => (
           <Reveal key={project.title} delay={index * 0.08}>
-            <article className="premium-card group overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.015] hover:border-gold-300/50 hover:shadow-2xl hover:shadow-gold-500/15">
+            <article className="site-card site-card-hover group overflow-hidden transition-all duration-300 hover:scale-[1.01]">
               <Image
                 src={project.image}
                 alt={project.title}

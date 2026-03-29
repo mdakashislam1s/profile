@@ -10,6 +10,7 @@ const navItems = [
   { href: "#skills", label: "Skills" },
   { href: "#portfolio", label: "Portfolio" },
   { href: "#blog", label: "Blog" },
+  { href: "#offers", label: "Offers" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -103,7 +104,7 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header ref={navRef} className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/70 backdrop-blur-xl">
+    <header ref={navRef} className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/72 backdrop-blur-2xl">
       <div className="mx-auto flex h-20 w-full max-w-[1600px] items-center justify-between px-4 sm:px-8 lg:px-12">
         <Link href="#home" className="text-lg font-semibold tracking-wide text-white">
           <span className="gold-text">Md. Akash</span>
@@ -115,7 +116,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               aria-current={activeHref === item.href ? "page" : undefined}
-              className={`relative text-sm font-medium transition-colors hover:text-gold-300 ${
+              className={`relative text-[15px] font-semibold tracking-wide transition-colors hover:text-gold-300 ${
                 activeHref === item.href ? "nav-link-active" : "text-zinc-300"
               }`}
             >
@@ -177,7 +178,7 @@ export function Navbar() {
               animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
               exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.98 }}
               transition={reducedMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" }}
-              className="absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-zinc-950/97 shadow-2xl shadow-black/60 md:hidden"
+              className="absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-zinc-950/95 shadow-2xl shadow-black/60 md:hidden"
             >
               <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-2 px-4 py-4 sm:px-8">
                 {navItems.map((item) => (

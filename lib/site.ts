@@ -159,6 +159,37 @@ export const blogs = [
   },
 ];
 
+export const offers = [
+  {
+    title: "Canva Pro Free Trial",
+    description: "Unlock Canva Pro features with a simple free-trial activation flow.",
+    status: "always",
+    statusLabel: "Always Available",
+    availability: "Unlimited access for everyone",
+    ctaLabel: "Get Canva Trial",
+    ctaHref: "https://wa.me/8801785422960?text=Need%20Canva%20free%20trial",
+    features: [
+      "Premium templates and brand kit",
+      "AI tools and background remover",
+      "No credit card required",
+    ],
+  },
+  {
+    title: "Hotspot Shield VPN Free Trial",
+    description: "Claim a limited premium VPN trial slot for secure browsing and privacy.",
+    status: "limited",
+    statusLabel: "Limited Slots",
+    availability: "First 10 members only",
+    ctaLabel: "Claim VPN Slot",
+    ctaHref: "https://wa.me/8801785422960?text=Need%20vpn",
+    features: [
+      "115+ server locations",
+      "Unlimited bandwidth",
+      "Zero-log privacy protection",
+    ],
+  },
+];
+
 export const faqs = [
   {
     question: "What makes your SEO approach different?",

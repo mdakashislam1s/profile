@@ -8,6 +8,7 @@ import { ContactSection } from "@/sections/contact";
 import { FaqSection } from "@/sections/faq";
 import { FooterSection } from "@/sections/footer";
 import { HeroSection } from "@/sections/hero";
+import { OffersSection } from "@/sections/offers";
 import { PortfolioSection } from "@/sections/portfolio";
 import { ServicesSection } from "@/sections/services";
 import { SkillsSection } from "@/sections/skills";
@@ -38,6 +39,7 @@ export default function Home() {
         <TestimonialsSection />
         <StatsSection />
         <BlogSection />
+        <OffersSection />
         <FaqSection />
         <ContactSection />
       </main>

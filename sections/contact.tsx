@@ -17,7 +17,7 @@ export function ContactSection() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
-          <form className="premium-card rounded-2xl p-6 sm:p-8" action="#" method="post">
+          <form className="site-card p-6 sm:p-8" action="#" method="post">
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="space-y-2 text-sm">
                 <span className="text-zinc-300">Name</span>
@@ -49,7 +49,7 @@ export function ContactSection() {
         </Reveal>
 
         <Reveal delay={0.1} className="space-y-4">
-          <article className="premium-card rounded-2xl p-6">
+          <article className="site-card site-card-hover p-6">
             <h3 className="mb-2 text-lg font-semibold text-white">Direct Contact</h3>
             <p className="text-zinc-300">
               Email: <a href={`mailto:${siteConfig.email}`} className="text-gold-300 hover:text-gold-200">{siteConfig.email}</a>
@@ -67,7 +67,7 @@ export function ContactSection() {
             </div>
           </article>
 
-          <article className="premium-card rounded-2xl p-6">
+          <article className="site-card site-card-hover p-6">
             <h3 className="mb-3 text-lg font-semibold text-white">Social Presence</h3>
             <div className="flex flex-wrap gap-3">
               <Link href={siteConfig.social.linkedin} className="social-pill" target="_blank" rel="noreferrer">
@@ -82,7 +82,7 @@ export function ContactSection() {
             </div>
           </article>
 
-          <article className="rounded-2xl border border-gold-300/30 bg-gold-500/10 p-6">
+          <article className="site-card p-6">
             <p className="text-sm leading-relaxed text-zinc-200">
               Premium support for founders, agencies, and growth teams. Response typically within 24 hours.
             </p>
