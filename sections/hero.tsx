@@ -12,7 +12,7 @@ export function HeroSection() {
         <div className="space-y-6 sm:space-y-7">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold-300/35 bg-gold-500/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-200">
             <span className="h-1.5 w-1.5 rounded-full bg-gold-300" />
-            SEO + Web Development Partner
+            SEO + Web Development Specialist
           </div>
 
           <div className="space-y-3.5">
