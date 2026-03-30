@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { FloatingActions } from "@/components/floating-actions";
 import { Navbar } from "@/components/navbar";
 import { siteConfig } from "@/lib/site";
 import { AboutSection } from "@/sections/about";
-import { BlogSection } from "@/sections/blog";
-import { ContactSection } from "@/sections/contact";
-import { FaqSection } from "@/sections/faq";
 import { FooterSection } from "@/sections/footer";
 import { HeroSection } from "@/sections/hero";
-import { OffersSection } from "@/sections/offers";
-import { PortfolioSection } from "@/sections/portfolio";
 import { ServicesSection } from "@/sections/services";
-import { SkillsSection } from "@/sections/skills";
-import { StatsSection } from "@/sections/stats";
-import { TestimonialsSection } from "@/sections/testimonials";
+
+const SkillsSection = dynamic(() => import("@/sections/skills").then((module) => module.SkillsSection));
+const PortfolioSection = dynamic(() => import("@/sections/portfolio").then((module) => module.PortfolioSection));
+const TestimonialsSection = dynamic(() => import("@/sections/testimonials").then((module) => module.TestimonialsSection));
+const StatsSection = dynamic(() => import("@/sections/stats").then((module) => module.StatsSection));
+const BlogSection = dynamic(() => import("@/sections/blog").then((module) => module.BlogSection));
+const OffersSection = dynamic(() => import("@/sections/offers").then((module) => module.OffersSection));
+const FaqSection = dynamic(() => import("@/sections/faq").then((module) => module.FaqSection));
+const ContactSection = dynamic(() => import("@/sections/contact").then((module) => module.ContactSection));
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

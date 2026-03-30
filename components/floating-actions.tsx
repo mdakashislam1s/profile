@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { AssistantWidget } from "@/components/assistant-widget";
 import { siteConfig } from "@/lib/site";
 
 export function FloatingActions() {
@@ -9,12 +10,28 @@ export function FloatingActions() {
   const [aiOpen, setAiOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 420);
+    let rafId = 0;
 
-    onScroll();
+    const updateVisibility = () => {
+      const next = window.scrollY > 420;
+      setShow((current) => (current === next ? current : next));
+      rafId = 0;
+    };
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(updateVisibility);
+    };
+
+    updateVisibility();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const whatsappHref = `https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}`;
@@ -45,19 +62,15 @@ export function FloatingActions() {
 
             <AnimatePresence>
               {aiOpen ? (
-                <motion.a
-                  href="https://gemini.google.com/app"
-                  target="_blank"
-                  rel="noreferrer"
+                <motion.div
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -8 }}
                   transition={{ duration: 0.2 }}
-                  className="ai-mini-panel"
-                  aria-label="Open Gemini Assistant"
+                  className="assistant-widget-wrap"
                 >
-                  Gemini
-                </motion.a>
+                  <AssistantWidget onClose={() => setAiOpen(false)} />
+                </motion.div>
               ) : null}
             </AnimatePresence>
           </motion.aside>

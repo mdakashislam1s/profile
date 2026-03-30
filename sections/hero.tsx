@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { Reveal } from "@/components/ui/reveal";
 
 export function HeroSection() {
   return (
@@ -10,7 +9,7 @@ export function HeroSection() {
       <div className="hero-glow pointer-events-none absolute -right-20 top-1/3 h-64 w-64 rounded-full" />
 
       <div className="grid min-h-[82svh] items-center gap-8 lg:min-h-[calc(100vh-8rem)] lg:grid-cols-[1.06fr_0.94fr] lg:gap-10">
-        <Reveal className="space-y-6 sm:space-y-7">
+        <div className="space-y-6 sm:space-y-7">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold-300/35 bg-gold-500/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-200">
             <span className="h-1.5 w-1.5 rounded-full bg-gold-300" />
             SEO + Web Development Partner
@@ -70,9 +69,9 @@ export function HeroSection() {
               </div>
             ))}
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal delay={0.12} className="relative">
+        <div className="relative">
           <div className="site-card p-4 sm:p-5">
             <div className="mb-4 flex items-center justify-between rounded-xl border border-white/10 bg-black/25 px-3 py-2.5">
               <div>
@@ -139,9 +138,12 @@ export function HeroSection() {
             alt="Code and analytics interface"
             width={430}
             height={170}
+            priority
+            fetchPriority="high"
+            sizes="(min-width: 1280px) 430px, 92vw"
             className="absolute -bottom-8 -left-6 hidden rounded-2xl border border-white/15 bg-zinc-900/70 p-2 shadow-2xl xl:block"
           />
-        </Reveal>
+        </div>
       </div>
     </Container>
   );

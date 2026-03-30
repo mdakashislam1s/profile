@@ -23,45 +23,53 @@ export function Navbar() {
   useEffect(() => {
     const sections = navItems
       .map((item) => ({ href: item.href, element: document.querySelector(item.href) as HTMLElement | null }))
-      .filter((item) => item.element);
+      .filter((item): item is { href: string; element: HTMLElement } => Boolean(item.element));
 
     if (!sections.length) return;
 
-    let rafId = 0;
+    const ratios = new Map<string, number>();
 
-    const updateActive = () => {
-      const scrollY = window.scrollY + 170;
-      let next = sections[0].href;
-
-      for (const section of sections) {
-        if (!section.element) continue;
-        if (scrollY >= section.element.offsetTop) {
-          next = section.href;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const id = (entry.target as HTMLElement).id;
+          const href = `#${id}`;
+          ratios.set(href, entry.isIntersecting ? entry.intersectionRatio : 0);
         }
-      }
 
-      setActiveHref((current) => (current === next ? current : next));
-      rafId = 0;
-    };
+        let next = sections[0].href;
+        let maxRatio = 0;
 
-    const onScroll = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(updateActive);
-    };
+        for (const item of navItems) {
+          const ratio = ratios.get(item.href) ?? 0;
+          if (ratio > maxRatio) {
+            maxRatio = ratio;
+            next = item.href;
+          }
+        }
 
-    updateActive();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+        if (maxRatio > 0) {
+          setActiveHref((current) => (current === next ? current : next));
+        }
+      },
+      { rootMargin: "-38% 0px -52% 0px", threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
+    );
 
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (rafId) window.cancelAnimationFrame(rafId);
-    };
+    for (const section of sections) {
+      observer.observe(section.element);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    const closeMenu = () => setOpen(false);
+    const closeMenu = () => {
+      setOpen(false);
+      const hash = window.location.hash;
+      if (hash && navItems.some((item) => item.href === hash)) {
+        setActiveHref(hash);
+      }
+    };
 
     window.addEventListener("hashchange", closeMenu);
 
@@ -104,7 +112,7 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header ref={navRef} className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/72 backdrop-blur-2xl">
+    <header ref={navRef} className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/90 md:bg-zinc-950/72 md:backdrop-blur-xl">
       <div className="mx-auto flex h-20 w-full max-w-[1600px] items-center justify-between px-4 sm:px-8 lg:px-12">
         <Link href="#home" className="text-lg font-semibold tracking-wide text-white">
           <span className="gold-text">Md. Akash</span>
