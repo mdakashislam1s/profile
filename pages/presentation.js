@@ -109,7 +109,7 @@ export default function Presentation() {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
@@ -127,7 +127,7 @@ export default function Presentation() {
       setDirection(1);
       setCurrent(prev => prev + 1);
     } else if (isAutoPlay) {
-      setIsAutoPlay(false); // Stop at the end
+      setIsAutoPlay(false);
     }
   }, [current, isAutoPlay]);
 
@@ -153,7 +153,7 @@ export default function Presentation() {
 
   // AutoPlay Logic
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval;
     if (isAutoPlay) {
       interval = setInterval(() => {
         nextSlide();
@@ -164,14 +164,14 @@ export default function Presentation() {
 
   // Keyboard controls
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") nextSlide();
       if (e.key === "ArrowLeft") prevSlide();
       if (e.key === "f") toggleFullScreen();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, prevSlide]);
+  }, [nextSlide, prevSlide, toggleFullScreen]);
 
   const currentSlide = slides[current];
 
@@ -179,7 +179,6 @@ export default function Presentation() {
     <div 
       className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${currentSlide.gradient} transition-colors duration-1000 ease-in-out font-sans`}
     >
-      {/* Animated Floating Orbs Background */}
       <motion.div 
         animate={{ 
           scale: [1, 1.2, 1],
@@ -201,7 +200,6 @@ export default function Presentation() {
         className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none"
       />
 
-      {/* Top Progress Bar */}
       <div className="absolute top-0 left-0 w-full h-1.5 bg-white/5 z-50">
         <motion.div 
           className="h-full bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400"
@@ -211,7 +209,6 @@ export default function Presentation() {
         />
       </div>
 
-      {/* Top Control Panel */}
       <div className="absolute top-6 right-8 flex gap-4 z-50">
         <button 
           onClick={() => setIsAutoPlay(!isAutoPlay)}
@@ -229,7 +226,6 @@ export default function Presentation() {
         </button>
       </div>
 
-      {/* Main Presentation Area */}
       <div 
         className="container max-w-5xl px-4 relative h-[600px] perspective-[1500px] z-10"
         onMouseMove={handleMouseMove}
@@ -287,7 +283,6 @@ export default function Presentation() {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Controls */}
       <div className="absolute bottom-12 flex gap-8 items-center z-50">
         <button 
           onClick={prevSlide}
