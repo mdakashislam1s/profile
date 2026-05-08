@@ -139,7 +139,7 @@ export default function Presentation() {
   }, [current]);
 
   // Fullscreen Toggle
-  const toggleFullScreen = () => {
+  const toggleFullScreen = useCallback(() => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
       setIsFullscreen(true);
@@ -149,7 +149,7 @@ export default function Presentation() {
         setIsFullscreen(false);
       }
     }
-  };
+  }, []);
 
   // AutoPlay Logic
   useEffect(() => {

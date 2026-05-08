@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { doc, getDoc, increment, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { SectionHeading } from "@/components/section-heading";
 import { Container } from "@/components/ui/container";
@@ -40,10 +40,10 @@ export function OffersSection() {
   const activeOffer = activeOfferIndex !== null ? offers[activeOfferIndex] : null;
   const canVerify = tasks.yt && tasks.fb;
 
-  const statsRef = doc(db, "config", "stats");
-  const credentialsRef = doc(db, "config", "credentials");
+  const statsRef = useMemo(() => doc(db, "config", "stats"), []);
+  const credentialsRef = useMemo(() => doc(db, "config", "credentials"), []);
 
-  const loadFirestoreData = async () => {
+  const loadFirestoreData = useCallback(async () => {
     try {
       const statsSnap = await getDoc(statsRef);
 
@@ -71,11 +71,11 @@ export function OffersSection() {
     } finally {
       setDataReady(true);
     }
-  };
+  }, [credentialsRef, statsRef]);
 
   useEffect(() => {
     void loadFirestoreData();
-  }, []);
+  }, [loadFirestoreData]);
 
   const openOfferModal = (index: number) => {
     setActiveOfferIndex(index);

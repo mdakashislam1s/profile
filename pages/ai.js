@@ -170,7 +170,7 @@ export default function AiPage() {
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeHighlight]}
                     components={{
-                      code({ node, className, children, ...props }) {
+                      code({ className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
                         const isInline = !match;
                         return !isInline ? (
@@ -200,7 +200,7 @@ export default function AiPage() {
 
               {msg.role === 'assistant' && msg.content && !isLoading && (
                 <div className="mt-2 flex items-center gap-2 text-zinc-400 dark:text-zinc-500">
-                  <button onClick={() => copyMessage(msg.content, msg.id)} className="hover:text-zinc-700 dark:hover:text-white"><Copied id={copiedId} current={msg.id} /></button>
+                  <button onClick={() => copyMessage(msg.content, msg.id)} className="hover:text-zinc-700 dark:hover:text-white"><Copied current={msg.id} /></button>
                   <button onClick={regenerateLast} className="hover:text-zinc-700 dark:hover:text-white"><RotateCcw size={16} /></button>
                 </div>
               )}
@@ -235,7 +235,7 @@ export default function AiPage() {
 }
 
 // ছোট কপি চেক কম্পোনেন্ট
-function Copied({ id, current }) {
+function Copied({ current }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = () => { navigator.clipboard.writeText(current); setCopied(true); setTimeout(() => setCopied(false), 2000); };
   return copied ? <Check size={16} /> : <Copy size={16} onClick={handleCopy} />;
